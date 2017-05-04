@@ -8,11 +8,12 @@ CFLAGS = $(CXXFLAGS)
 #  -Wall turns on most, but not all, compiler warnings
 CXXFLAGS  = -g -Wall -Werror
 #LDFLAGS = -lm
-SPECIAL_FLAGS = -std=c++0x -D_GNU_SOURCE
+SPECIAL_FLAGS = -std=c++11
 
 # the build target executable:
 TARGET =boost_bind \
-        enable_shared_from_this
+        enable_shared_from_this \
+        boost_shared_ptr
 
 all: $(TARGET)
 
@@ -21,6 +22,9 @@ boost_bind: boost_bind.cxx
 
 enable_shared_from_this: enable_shared_from_this.cxx
 	$(CXX) $(CFLAGS) $< -o $@ -lm -lboost_system
+
+boost_shared_ptr: boost_shared_ptr.cxx
+	$(CXX) $(CFLAGS) $(SPECIAL_FLAGS) $< -o $@ -lm -lboost_system
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@ 
