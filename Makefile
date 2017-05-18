@@ -13,7 +13,8 @@ SPECIAL_FLAGS = -std=c++11
 # the build target executable:
 TARGET =boost_bind \
         enable_shared_from_this \
-        boost_shared_ptr
+        boost_shared_ptr \
+        boost_lexical_cast
 
 all: $(TARGET)
 
@@ -25,6 +26,9 @@ enable_shared_from_this: enable_shared_from_this.cxx
 
 boost_shared_ptr: boost_shared_ptr.cxx
 	$(CXX) $(CFLAGS) $(SPECIAL_FLAGS) $< -o $@ -lm -lboost_system
+
+boost_lexical_cast: boost_lexical_cast.cxx
+	$(CXX) $(CFLAGS) $< -o $@ -lm -lboost_system
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@ 
