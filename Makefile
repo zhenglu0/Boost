@@ -14,7 +14,8 @@ SPECIAL_FLAGS = -std=c++11
 TARGET =boost_bind \
         enable_shared_from_this \
         boost_shared_ptr \
-        boost_lexical_cast
+        boost_lexical_cast \
+        boost_log
 
 all: $(TARGET)
 
@@ -30,6 +31,8 @@ boost_shared_ptr: boost_shared_ptr.cxx
 boost_lexical_cast: boost_lexical_cast.cxx
 	$(CXX) $(CFLAGS) $< -o $@ -lm -lboost_system
 
+boost_log: boost_log.cxx
+	$(CXX) $(CFLAGS) $< -o $@ -lm -DBOOST_LOG_DYN_LINK -lboost_log -lboost_thread -lpthread -lboost_system -lboost_log_setup
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
@@ -37,4 +40,4 @@ boost_lexical_cast: boost_lexical_cast.cxx
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 
 clean:
-	$(RM) $(TARGET) *.o
+	$(RM) $(TARGET) *.o sample.log

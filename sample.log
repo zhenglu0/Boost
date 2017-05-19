@@ -1,0 +1,2 @@
+2017-05-19, 09:15:22.552669 [00:00:00] [int main(int, char**) (boost_log.cxx:116)] <warning> A warning severity message, will pass to the file
+2017-05-19, 09:15:22.553044 [00:00:00] [int main(int, char**) (boost_log.cxx:116)] <error> An error severity message, will pass to the file
