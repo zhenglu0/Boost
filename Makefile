@@ -15,7 +15,8 @@ TARGET =boost_bind \
         enable_shared_from_this \
         boost_shared_ptr \
         boost_lexical_cast \
-        boost_log
+        boost_log \
+        boost_future_promise
 
 all: $(TARGET)
 
@@ -33,6 +34,10 @@ boost_lexical_cast: boost_lexical_cast.cxx
 
 boost_log: boost_log.cxx
 	$(CXX) $(CFLAGS) $< -o $@ -lm -DBOOST_LOG_DYN_LINK -lboost_log -lboost_thread -lpthread -lboost_system -lboost_log_setup
+
+boost_future_promise: boost_future_promise.cxx
+	$(CXX) $(CFLAGS) $(SPECIAL_FLAGS) $< -o $@ -lm -lboost_system -lboost_thread
+
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
